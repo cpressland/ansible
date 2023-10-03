@@ -1,0 +1,31 @@
+---
+- name: Setup Dotfile Directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0700
+  loop:
+    - ~/.config
+    - ~/.config/fish
+    - ~/.config/fish/conf.d
+    - ~/.config/iterm2
+    - ~/.ssh
+
+- name: Copy Config Files
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0600
+  loop:
+    - src: fish/config.fish
+      dest: ~/.config/fish/config.fish
+    - src: fish/fish_variables
+      dest: ~/.config/fish/fish_variables
+    - src: fish/conf.d/mocha.fish
+      dest: ~/.config/fish/conf.d/mocha.fish
+    - src: iterm2/com.googlecode.iterm2.plist
+      dest: ~/.config/iterm2/com.googlecode.iterm2.plist
+    - src: git/gitconfig
+      dest: ~/.gitconfig
+    - src: ssh/config
+      dest: ~/.ssh/config

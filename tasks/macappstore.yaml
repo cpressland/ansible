@@ -1,0 +1,5 @@
+---
+- name: "Install Mac App Store Apps"
+  mas:
+    id: "{{ mas_apps }}"
+    state: present

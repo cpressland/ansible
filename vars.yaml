@@ -1,0 +1,65 @@
+install_homebrew: false
+install_mas: false
+setup_defaults: false
+setup_dotfiles: true
+
+brew_taps:
+  - azure/kubelogin
+  - fluxcd/tap
+  - homebrew/cask-fonts
+brew_cask_packages:
+  - 1password-cli
+  - chromedriver
+  - font-cascadia-code
+  - font-cascadia-code-pl
+  - font-cascadia-mono
+  - font-cascadia-mono-pl
+homebrew_packages:
+  - azure-cli
+  - azure/kubelogin/kubelogin
+  - bash
+  - coreutils
+  - eza
+  - fish
+  - fluxcd/tap/flux
+  - git
+  - go
+  - helm
+  - jq
+  - kubernetes-cli
+  - kustomize
+  - linkerd
+  - mas
+  - mosquitto
+  - neovim
+  - openssh
+  - pipenv
+  - poetry
+  - postgresql@15
+  - python@3.10
+  - python@3.11
+  - python@3.9
+  - rclone
+  - redis
+  - rsync
+  - terraform
+  - tmux
+  - tree
+  - trivy
+  - vim
+  - vim
+  - watch
+  - wget
+  - wireguard-tools
+  - ykman
+  - yt-dlp
+  - zsh
+  - zstd
+mas_apps:
+  - 803453959  # Slack
+  - 1320666476 # Wipr
+  - 1432182561 # Cascadea
+  - 1451685025 # WireGuard
+  - 1511935951 # BetterJSON for Safari
+  - 1569813296 # 1Password for Safari
+  - 1573461917 # SponsorBlock for YouTube
