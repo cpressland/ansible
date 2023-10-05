@@ -18,6 +18,7 @@ homebrew_packages:
   - azure-cli
   - azure/kubelogin/kubelogin
   - bash
+  - bat
   - coreutils
   - eza
   - fish
