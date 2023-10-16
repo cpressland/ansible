@@ -20,6 +20,7 @@ homebrew_packages:
   - bash
   - bat
   - coreutils
+  - direnv
   - eza
   - fish
   - fluxcd/tap/flux

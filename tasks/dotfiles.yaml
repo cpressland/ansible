@@ -9,6 +9,7 @@
     - ~/.config/fish
     - ~/.config/fish/conf.d
     - ~/.config/iterm2
+    - ~/.config/direnv
     - ~/.ssh
 
 - name: Copy Config Files
@@ -25,6 +26,8 @@
       dest: ~/.config/fish/conf.d/mocha.fish
     - src: iterm2/com.googlecode.iterm2.plist
       dest: ~/.config/iterm2/com.googlecode.iterm2.plist
+    - src: direnv/direnv.toml
+      dest: ~/.config/direnv/direnv.toml
     - src: git/gitconfig
       dest: ~/.gitconfig
     - src: ssh/config

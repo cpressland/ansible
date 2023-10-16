@@ -20,6 +20,10 @@ if command -v kubectl 1>/dev/null 2>&1
   kubectl completion fish | source
 end
 
+if command -v direnv 1>/dev/null 2>&1
+  direnv hook fish | source
+end
+
 function _maybe_source
     if [ -f $argv ]
         source $argv
