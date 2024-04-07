@@ -6,7 +6,7 @@ setup_dotfiles: true
 brew_taps:
   - azure/kubelogin
   - fluxcd/tap
-  - tap "homebrew/bundle"
+  - homebrew/bundle
   - homebrew/cask-fonts
 brew_cask_packages:
   - 1password-cli
