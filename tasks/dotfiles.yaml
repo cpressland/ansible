@@ -32,3 +32,5 @@
       dest: ~/.gitconfig
     - src: ssh/config
       dest: ~/.ssh/config
+    - src: starship/starship.toml
+      dest: ~/.config/starship.toml

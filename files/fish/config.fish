@@ -1,8 +1,9 @@
+set -gx EDITOR nvim
 bind \cw backward-kill-word
 
 if command -v eza 1>/dev/null 2>&1
     function ls
-        eza -F --icons --git --group-directories-first --time-style long-iso --colour-scale $argv
+        eza -F --icons --git --group-directories-first --time-style long-iso --colour-scale all $argv
     end
 end
 
@@ -30,9 +31,6 @@ function _maybe_source
     end
 end
 
-_maybe_source $HOME/.iterm2_shell_integration.fish
-_maybe_source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
-
 function b2k
     for subscription in (az account list --output json 2>/dev/null | jq -r ".[].id")
         az account set --subscription $subscription
@@ -45,16 +43,10 @@ function b2k
     kubelogin convert-kubeconfig -l azurecli
 end
 
-function iterm2_print_user_vars
-    set -l kube_context (kubectl config current-context)
-    set -l kube_namespace (kubectl config view --minify --output 'jsonpath={..namespace}')
-    set -l git_branch (git branch 2> /dev/null | grep \* | cut -c3-)
-
-    iterm2_set_user_var kube_context "$kube_context"
-    iterm2_set_user_var kube_namespace "$kube_namespace"
-    iterm2_set_user_var git_branch "$git_branch"
-end
-
-function fish_prompt
-    echo (set_color brmagenta)'$ '
+if type -q starship
+    function starship_transient_prompt_func
+        starship module character
+    end
+    starship init fish | source
+    enable_transience
 end
