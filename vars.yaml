@@ -30,7 +30,6 @@ homebrew_packages:
   - jq
   - kubernetes-cli
   - kustomize
-  - linkerd
   - mas
   - mosquitto
   - neovim
@@ -59,7 +58,7 @@ homebrew_packages:
   - zsh
   - zstd
 mas_apps:
-  - 803453959  # Slack
+  - 803453959 # Slack
   - 1320666476 # Wipr
   - 1432182561 # Cascadea
   - 1451685025 # WireGuard
