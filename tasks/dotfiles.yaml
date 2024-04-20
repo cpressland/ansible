@@ -10,6 +10,7 @@
     - ~/.config/fish/conf.d
     - ~/.config/iterm2
     - ~/.config/direnv
+    - ~/.config/kitty
     - ~/.ssh
 
 - name: Copy Config Files
@@ -34,3 +35,5 @@
       dest: ~/.ssh/config
     - src: starship/starship.toml
       dest: ~/.config/starship.toml
+    - src: kitty/kitty.conf
+      dest: ~/.config/kitty/kitty.conf
