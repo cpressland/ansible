@@ -11,10 +11,6 @@
       shell: "killall Finder"
   tasks:
     - import_tasks: tasks/homebrew.yaml
-      when: install_homebrew
     - import_tasks: tasks/macappstore.yaml
-      when: install_mas
     - import_tasks: tasks/defaults.yaml
-      when: setup_defaults
-    - import_tasks: tasks/dotfiles.yaml
-      when: setup_dotfiles
+    - import_tasks: tasks/dotfiles-macos.yaml

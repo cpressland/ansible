@@ -1,0 +1,13 @@
+[Unit]
+Description=wsl-vpnkit
+After=network.target
+
+[Service]
+ExecStart=/opt/vpnkit/wsl-vpnkit
+Environment=VMEXEC_PATH=/opt/vpnkit/wsl-vm GVPROXY_PATH=/opt/vpnkit/wsl-gvproxy.exe
+
+Restart=always
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target

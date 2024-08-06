@@ -1,0 +1,41 @@
+---
+- name: Create VPNKit Directory
+  become: true
+  file:
+    path: /opt/vpnkit2
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Check if VPN Kit is already installed
+  stat:
+    path: /opt/vpnkit/wsl-vpnkit
+  register: vpnkit_installed
+
+- name: Install VPNKit
+  become: true
+  unarchive:
+    src: https://github.com/sakai135/wsl-vpnkit/releases/download/v0.4.1/wsl-vpnkit.tar.gz
+    dest: /opt/vpnkit2
+    remote_src: yes
+    extra_opts: ["--strip-components=1"]
+    include: ["app/wsl-vpnkit", "app/wsl-gvproxy.exe", "app/wsl-vm"]
+  when: not vpnkit_installed.stat.exists
+
+- name: Install VPNKit Service
+  become: true
+  copy:
+    src: vpnkit/wsl-vpnkit.service
+    dest: /etc/systemd/system/wsl-vpnkit.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable and Start VPNKit
+  become: true
+  systemd:
+    name: wsl-vpnkit
+    enabled: yes
+    state: started
+    daemon_reload: yes

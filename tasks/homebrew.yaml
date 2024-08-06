@@ -8,6 +8,13 @@
   homebrew_cask:
     name: "{{ brew_cask_packages }}"
     state: latest
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install Mac App Store CLI
+  homebrew:
+    name: mas
+    state: latest
+  when: ansible_distribution == 'MacOSX'
 
 - name: Install Homebrew Packages
   homebrew:

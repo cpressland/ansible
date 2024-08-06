@@ -8,9 +8,7 @@
     - ~/.config
     - ~/.config/fish
     - ~/.config/fish/conf.d
-    - ~/.config/iterm2
     - ~/.config/direnv
-    - ~/.config/kitty
     - ~/.ssh
 
 - name: Copy Config Files
@@ -25,15 +23,24 @@
       dest: ~/.config/fish/fish_variables
     - src: fish/conf.d/mocha.fish
       dest: ~/.config/fish/conf.d/mocha.fish
-    - src: iterm2/com.googlecode.iterm2.plist
-      dest: ~/.config/iterm2/com.googlecode.iterm2.plist
     - src: direnv/direnv.toml
       dest: ~/.config/direnv/direnv.toml
-    - src: git/gitconfig
+    - src: git/wsl/gitconfig
       dest: ~/.gitconfig
+    - src: git/wsl/gitconfig-azure
+      dest: ~/.gitconfig-azure
     - src: ssh/config
       dest: ~/.ssh/config
     - src: starship/starship.toml
       dest: ~/.config/starship.toml
-    - src: kitty/kitty.conf
-      dest: ~/.config/kitty/kitty.conf
+
+- name: Set homebrew fish as an available shell
+  become: true
+  lineinfile:
+    path: /etc/shells
+    line: /home/linuxbrew/.linuxbrew/bin/fish
+
+- name: Set Fish as default shell
+  user:
+    name: cpressland
+    shell: /home/linuxbrew/.linuxbrew/bin/fish

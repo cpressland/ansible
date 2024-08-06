@@ -1,0 +1,10 @@
+---
+- name: setup wsl
+  hosts: localhost
+  become: false
+  vars_files:
+    - vars.yaml
+  tasks:
+    - import_tasks: tasks/homebrew.yaml
+    - import_tasks: tasks/dotfiles-wsl.yaml
+    - import_tasks: tasks/vpnkit.yaml

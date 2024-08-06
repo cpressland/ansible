@@ -1,0 +1,33 @@
+---
+- name: Setup Dotfile Directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0700
+  loop:
+    - ~/.config
+    - ~/.config/fish
+    - ~/.config/fish/conf.d
+    - ~/.config/direnv
+    - ~/.ssh
+
+- name: Copy Config Files
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0600
+  loop:
+    - src: fish/config.fish
+      dest: ~/.config/fish/config.fish
+    - src: fish/fish_variables
+      dest: ~/.config/fish/fish_variables
+    - src: fish/conf.d/mocha.fish
+      dest: ~/.config/fish/conf.d/mocha.fish
+    - src: direnv/direnv.toml
+      dest: ~/.config/direnv/direnv.toml
+    - src: git/macos/gitconfig
+      dest: ~/.gitconfig
+    - src: ssh/config
+      dest: ~/.ssh/config
+    - src: starship/starship.toml
+      dest: ~/.config/starship.toml
