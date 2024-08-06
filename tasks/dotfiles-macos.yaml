@@ -31,3 +31,5 @@
       dest: ~/.ssh/config
     - src: starship/starship.toml
       dest: ~/.config/starship.toml
+    - src: wezterm/wezterm.lua
+      dest: ~/.wezterm.lua
