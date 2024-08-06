@@ -1,0 +1,6 @@
+---
+- name: setup k3s
+  hosts: localhost
+  become: false
+  tasks:
+    - import_tasks: tasks/k3s.yaml

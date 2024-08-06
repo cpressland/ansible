@@ -1,0 +1,72 @@
+---
+- name: Disable cockpit
+  become: true
+  systemd:
+    name: cockpit.socket
+    enabled: no
+    state: stopped
+
+- name: Remove cockput motd
+  become: true
+  file:
+    path: /etc/motd.d/cockpit
+    state: absent
+
+- name: Disable firewalld
+  become: true
+  systemd:
+    name: firewalld
+    enabled: no
+    state: stopped
+
+- name: Install packages
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - curl
+    - git
+    - vim
+    - htop
+    - fish
+
+- name: Download K3s Binary
+  become: true
+  get_url:
+    url: https://github.com/k3s-io/k3s/releases/download/v1.30.3%2Bk3s1/k3s
+    dest: /usr/local/bin/k3s
+    mode: 0755
+
+- name: Create K3s Systemd Service
+  become: true
+  copy:
+    dest: /etc/systemd/system/k3s.service
+    src: k3s/k3s.service
+
+- name: Start K3s
+  become: true
+  systemd:
+    name: k3s.service
+    enabled: yes
+    state: started
+    daemon_reload: yes
+
+- name: symlink kubectl
+  become: true
+  file:
+    src: /usr/local/bin/k3s
+    dest: /usr/local/bin/kubectl
+    state: link
+
+- name: Create kubeconfig directory
+  file:
+    dest: ~/.kube
+    state: directory
+    mode: 0700
+
+- name: symlink kubeconfig
+  file:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: ~/.kube/config
+    state: link
