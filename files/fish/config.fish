@@ -50,3 +50,7 @@ if type -q starship
     starship init fish | source
     enable_transience
 end
+
+if status is-interactive
+    atuin init fish --disable-up-arrow | source
+end

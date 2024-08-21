@@ -13,6 +13,7 @@ brew_cask_packages:
   - font-caskaydia-cove-nerd-font
 homebrew_packages:
   - ansible
+  - atuin
   - azure-cli
   - azure/kubelogin/kubelogin
   - bash
