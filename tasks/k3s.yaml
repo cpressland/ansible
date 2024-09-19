@@ -1,24 +1,4 @@
 ---
-- name: Disable cockpit
-  become: true
-  systemd:
-    name: cockpit.socket
-    enabled: no
-    state: stopped
-
-- name: Remove cockput motd
-  become: true
-  file:
-    path: /etc/motd.d/cockpit
-    state: absent
-
-- name: Disable firewalld
-  become: true
-  systemd:
-    name: firewalld
-    enabled: no
-    state: stopped
-
 - name: Install packages
   become: true
   package:
