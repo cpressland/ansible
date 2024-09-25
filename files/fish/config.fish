@@ -54,3 +54,7 @@ end
 if status is-interactive
     atuin init fish --disable-up-arrow | source
 end
+
+if grep -q "WSL2" /proc/version
+    alias pbcopy="clip.exe"
+end
