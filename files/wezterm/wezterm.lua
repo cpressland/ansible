@@ -3,9 +3,8 @@ local act = wezterm.action
 
 local config = wezterm.config_builder()
 config.color_scheme = "Catppuccin Mocha"
-config.default_prog = {'/opt/homebrew/bin/fish', '-l'}
 config.window_decorations = "RESIZE"
-config.hide_tab_bar_if_only_one_tab = true
+config.hide_tab_bar_if_only_one_tab = false
 config.font = wezterm.font('CaskaydiaCove Nerd Font')
 config.font_size = 14
 
@@ -17,7 +16,6 @@ config.keys = {
 	action = act.ClearScrollback 'ScrollbackAndViewport',
     },
 }
-
 
 wezterm.plugin.require("https://github.com/nekowinston/wezterm-bar").apply_to_config(config, {
   position = "bottom",
@@ -52,5 +50,20 @@ wezterm.plugin.require("https://github.com/nekowinston/wezterm-bar").apply_to_co
   },
 })
 
+
+if wezterm.target_triple == 'aarch64-apple-darwin' then
+  config.default_prog = {'/opt/homebrew/bin/fish', '-l'}
+end
+
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+  config.wsl_domains = {
+    {
+      name = 'WSL:Ubuntu',
+      distribution = 'Ubuntu',
+      default_cwd = "/home/cpressland",
+    },
+  }
+  config.default_domain = 'WSL:Ubuntu'
+end
 
 return config
