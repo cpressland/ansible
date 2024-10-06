@@ -10,6 +10,7 @@
     - vim
     - htop
     - fish
+    - smbclient
 
 - name: Download K3s Binary
   become: true
